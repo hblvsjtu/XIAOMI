@@ -1,0 +1,177 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-12 09:29:54
+ * @version V0.0.1
+ */
+
+// reset style
+@import "./utilities.scss";
+
+html {
+	padding: 0;
+	margin: 0;
+	font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+
+// header
+$topbarHeight: 40px;
+$topbarWidth: 1226px;
+$topbarInHeight: 18px;
+
+.container {
+	width: $topbarWidth;
+	height: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.topbar {
+	height: $topbarHeight;
+	color: #b0b0b0;
+    background: #333;
+    .container {
+    	.topbar_nav {
+    		float: left;
+    		height: 100%;
+    		@include HorizontalNav($topbarHeight, $topbarInHeight, 0, 0, #b0b0b0, #fff);
+    	}
+    	.topbar_cart{
+    		float: right;
+    		padding-left: 8px;
+    		padding-right: 8px;
+    		background: #666;
+    		$url1: "https://i8.mifile.cn/b2c-mimall-media/d7db56d1d850113f016c95e289e36efa.png";
+    		$url2: "https://i8.mifile.cn/b2c-mimall-media/692a6c3b0a93a24f74a29c0f9d68ec71.png";
+    		@include cartList(100px, 300px, $topbarHeight, right, $url1, $url2); 
+    		div {
+    			z-index: 1;
+    		}
+    	}
+    	.topbar_info{
+    		float: right;
+    		@include HorizontalNav($topbarHeight, $topbarInHeight, 0, 8px, #b0b0b0, #fff);
+    	}
+
+    	&:after {
+    		display: block;
+    		content: "";
+    		height: 0;
+    		clear: both;
+    	}
+    }
+}
+
+$sitebarHeight: 100px;
+$navMenuHeight: 229px;
+.site_header {
+	position: relative;
+	.container {
+		height: $sitebarHeight;
+		.site_left {
+			float: left;
+		    width: 62px;
+		    margin-top: 22px;
+		    a {
+		    	position: relative;
+			    display: block;
+			    width: 55px;
+			    height: 55px;
+			    background-color: #ff6700;
+			    background: url("https://s01.mifile.cn/i/logo-footer.png?v2") no-repeat center;
+			    background-size: contain;
+		    }
+			
+		}
+		.site_right{
+			float: right;
+			width: 296px;
+			height: 50px;
+			margin-top: 25px;
+			$url1: "../picture/search1.png";
+			$url2: "../picture/search2.png";
+			@include search(223px, 48px, $url1, $url2);
+			form ul{
+				z-index:1;
+			}
+		}
+		.site_middle{
+			float: left;
+			color: black;
+			@include HorizontalNav($sitebarHeight, 19px, 30px, 0, black, #ff6700);
+			ul li {
+				position: relative;
+				border: none;
+				a {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	.nav_menu {
+		position:absolute;
+		top: $sitebarHeight;
+		left: 0;
+		right: 0;
+		z-index:1;
+		border-top: solid 1px rgba(0,0,0,0.15);
+		height: $navMenuHeight;
+		text-align: center;
+		background: white;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+		clip: rect(0 2000px 0 0);
+		transition: clip 0.5s;
+		&:hover {
+			clip: rect(0 2000px 241px 0);
+		}
+		div {
+			display: inline-block; // apply BFC;
+			width: $topbarWidth;
+			height: $navMenuHeight;
+			@include resetUlLi;
+			ul {
+				$height: 120px;
+				$width: 180px;
+				$lineheight: 20px;
+				$top: 35px;
+				margin-top: $top;
+				li {
+					display:inline-block;
+					position: relative;
+					height: $height;
+					width: $width;
+					border-right: solid 1px #e0e0e0;
+					@include unitStyle($width, $height, $lineheight, $top);
+					$urls: (
+						'https://i1.mifile.cn/a1/pms_1527684990.93616987!220x220.jpg',
+						'https://i1.mifile.cn/a1/pms_1522034061.12391230!220x220.jpg',
+						'https://i1.mifile.cn/a1/pms_1527144859.25489991!220x220.jpg',
+						'https://i1.mifile.cn/a1/pms_1495692033.10494295!220x220.jpg',
+						'https://i1.mifile.cn/a1/pms_1509723483.31416776!220x220.jpg',
+						'https://i1.mifile.cn/a1/pms_1525853341.8312102!220x220.jpg',
+					);
+					@for $i from 1 through length($urls) {
+						&:nth-child(#{$i}) {
+							@if $i % 2 == 0 {
+								div {
+									visibility: hidden;
+								}
+							}
+							@if $i == length($urls) {
+								border-right: none;
+							}
+							a:first-of-type {
+								background: url(nth($urls,$i)) no-repeat center;
+								background-size: contain;
+							}	
+						}
+						
+					}
+				}
+								
+			}
+			
+		}
+	}
+}

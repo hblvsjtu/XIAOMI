@@ -1,0 +1,337 @@
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-12 09:29:54
+ * @version V0.0.1
+ */
+
+// reset ul li
+@mixin resetUlLi {
+	ul {
+		list-style: none;
+		padding:0;
+		margin:0;
+		li {
+			list-style: none;
+			padding:0;
+			margin:0;
+		}
+	}
+}
+
+// text Vertical Middle
+@mixin textVerticalMiddle($height) {
+	line-height: $height;
+	vertical-align: middle;
+}
+
+// set background img
+@mixin backgroundImg($url1) {
+	background: url($url1) no-repeat center;
+	background-size: contain;
+}
+
+/* 
+ * Horizontal Nav List
+ * outer need BFC container
+ */
+@mixin HorizontalNav($Height, $InHeight, $left, $right, $color, $hovercolor) {
+	// reset style
+	@include resetUlLi;
+	ul {
+		line-height: $InHeight;
+		margin-top: ($Height - $InHeight)/2;
+		margin-left: $left;
+		margin-right: $right;
+		vertical-align: middle;
+	}
+	ul li {
+		display: inline-block;
+		height: 100%;
+		text-align: center;
+		padding: 0 8px;
+		border-right: solid 1px rgb(66,66,66);
+	}
+	ul li:first-child {
+		padding-left: 0;
+	}
+	ul li:last-child {
+		border-right: solid 0px transparent;
+		padding-right: 0;
+	}
+	ul li a {
+		text-decoration: none;
+		color: $color;
+		&:hover {
+			color: $hovercolor;
+		}
+	}
+}
+
+// pullList
+@mixin cartList($height, $width, $top, $position, $url1, $url2) {
+	position: relative;
+	line-height: $top;
+	vertical-align: middle;
+	span {
+		font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+		padding-left: 8px;
+		padding-right: 8px;
+		i {
+			display: inline-block;
+			width: 22px;
+			height: 19px;
+			margin-right: 5px;
+			vertical-align: middle;
+			background: url($url1) no-repeat center;
+			background-size: cover;
+		}
+	}
+	div {
+		position: absolute;
+		@if $position == left {
+			left: 0;
+		} @else if $position == right {
+			right: 0;
+		} @else if $position == null {
+			right: 0;
+		}
+		top: $top;
+		width: $width;
+		height: $height;
+		clip: rect(0 $width 0 0);	//以左边和上边作为参考，此时为显示的内容
+		text-align: center;
+		background: white;
+		span {
+			color: #424242;
+			@include textVerticalMiddle(100px);
+		}
+		box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+		transition: clip 0.5s;
+	}
+	&:hover {
+		color: rgb(253, 98, 6);
+		background: white;
+		span {
+			i {
+				background: url($url2) no-repeat center;
+				background-size: cover;
+			}	
+		}
+		div {	
+			clip: rect(0 $width $height 0);	
+		}
+	}
+}
+
+
+/* 
+ * search need @include resetUlLi;
+ * 注意button是border-box
+ */
+@mixin search($width, $height, $url1, $url2) {
+	form {
+		position: relative;
+		margin: 0;
+		input {
+			outline: none;
+			position: absolute;
+		    top: 0;
+		    right: $height - 1px;
+		    font-size: 14px;
+		    width: $width;
+		    height: $height - 1*4px;
+		    line-height: $height - 1*4px;
+		    border: 1px solid #e0e0e0;
+		    &:focus {
+		    	border: solid 1px rgb(253, 98, 6);
+		    	&~ ul:first-of-type {
+					visibility: visible;
+					background: white;
+					border: solid 1px rgb(253, 98, 6);
+					li:hover {
+						background: #fafafa;
+					}
+		    	}
+		    	&~ button:first-of-type {
+		    		border: solid 1px rgb(253, 98, 6);
+		    	}
+		    	&~ div:first-of-type {
+		    		display: none;
+		    	}
+				
+		    }
+		} 
+		div {
+			position: absolute;
+			top: 14px;
+			right: 62px;
+			text-align: right;
+			a {
+				text-decoration: none;
+			    display: inline-block;
+				margin-left: 5px;
+				padding: 0 5px;
+				font-size: 12px;
+				background: #eee;
+				color: #757575;
+				&:hover {
+					color: white;
+					background: rgb(253, 98, 6);
+				}
+			}
+		}
+		button {
+			position: absolute;
+			right: 0;
+			top: 0;
+			font-size: 24px;
+			width: $height;
+			height: $height;
+			line-height: 24px;
+			border: 1px solid #e0e0e0;
+			background: #fff;
+			i {
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				background: url($url1) no-repeat center;
+				background-size: cover;
+			}
+
+			&:hover {
+				background: rgb(253, 98, 6);
+				i{
+					background: url($url2) no-repeat center;
+					background-size: cover;
+				}
+			}
+		}
+
+		@include resetUlLi;
+		ul {
+			visibility: hidden;
+			position: absolute;
+			top: $height - 1px;
+			right: $height - 1px;
+			width: $width + 2px;
+			li {
+				display: block;
+				a {
+					text-decoration: none;
+					display: block;
+					padding: 6px 15px;
+					font-size: 12px;
+					color: #424242;
+					span {
+						float: right;
+						color: #b0b0b0;
+					}
+				}
+			}
+
+		}
+	}
+}
+
+/* 
+ * Unit style
+ # total height = $height + 2*$lineheight + $top
+ */
+ @mixin unitStyle($width, $height, $lineheight, $top) {
+ 	div:first-of-type {
+ 		position: absolute;
+ 		top: -$top - 1px;
+		left: 2 * $lineheight;
+		line-height: $lineheight;
+ 		width: $width - 4 * $lineheight;;
+ 	    height: $lineheight;
+ 	    border: 1px solid #ff6700;
+ 	    color: #ff6700;
+ 	}
+ 	a:first-of-type {
+ 		text-decoration: none;
+ 		display: inline-block;
+ 		height: $height;
+ 		width: $width;
+ 	}
+ 	a:nth-of-type(2) {
+ 		text-decoration: none;
+ 		position: absolute;
+ 		top: $height;
+ 		left:0;
+ 		right:0;
+ 		line-height: $lineheight;
+ 		vertical-align:middle;
+ 		color: black;
+ 	}
+ 	span {
+ 		position: absolute;
+ 		top: $height + $lineheight;
+ 		left:0;
+ 		right:0;
+ 		line-height: $lineheight;
+ 		vertical-align:middle;
+ 		color: #ff6700;
+ 	}
+
+ }
+
+/* 
+ * Unit style class
+ * # total height = $height + 2*$lineheight + $top
+ */
+ .unitStyle {
+ 	$width: 300px;
+ 	$height: 200px;
+ 	$lineheight: 30px;
+ 	$top: 35px;
+ 	display: inline-block;
+ 	position: relative;
+ 	text-align: center;
+ 	height: 200px;
+ 	width: 300px;
+ 	margin-top: $top;
+ 	@include unitStyle($width, $height, $lineheight, $top);
+ 	border: solid 1px red;
+ }
+
+ @mixin dot($content, $border, $contentColor, $borderColor) {
+ 	display: inline-block;
+	width: $content;
+	height: $content;
+	background: $contentColor;
+	-moz-background-origin: content-box; 
+	-webkit-background-origin: content-box; 
+	-khtml-background-origin: content-box; 
+	background-origin: content-box;
+	-moz-background-clip: content-box; 
+	-webkit-background-clip: content-box; 
+	-khtml-background-clip: content-box; 
+	background-clip: content-box;
+	border: solid $border $borderColor;
+	border-radius: $content / 2 + $border;
+ }
+
+ .dot {
+ 	@include dot(100px, 20px, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+ }
+
+ @mixin array($dir, $distance, $width, $height, $left1, $l1, $h1, $left2, $l2, $h2) {
+ 	display: inline-block;
+ 	position: absolute;
+ 	top: 0;
+ 	bottom: 0;
+	#{$dir}: $distance;
+ 	width: $width;
+ 	height: $height;
+ 	margin: auto 0;
+ 	background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+ 	background-position: $left1 center;
+ 	background-size: $l1 $h1;
+ 	&:hover {
+ 		background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+ 		background-position: $left2 center;
+ 		background-size: $l2 $h2;
+ 	}
+ }

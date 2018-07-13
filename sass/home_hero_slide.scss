@@ -1,0 +1,171 @@
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-12 09:29:54
+ * @version V0.0.1
+ * @descript home_hero_slide.scss
+ */
+
+// 
+$topbarWidth: 1226px;
+$homeHeroSlideHeight: 460px;
+$homeHeroSlideWidth: 235px;
+
+// reset ul li
+@mixin resetUlLi {
+	ul {
+		list-style: none;
+		padding:0;
+		margin:0;
+		li {
+			list-style: none;
+			padding:0;
+			margin:0;
+		}
+	}
+}
+// set background img
+@mixin backgroundImg($url1) {
+	background: url($url1) no-repeat center;
+	background-size: contain;
+}
+
+@mixin dot($content, $border, $contentColor, $borderColor) {
+ 	display: inline-block;
+	width: $content;
+	height: $content;
+	background: $contentColor;
+	-moz-background-origin: content-box; 
+	-webkit-background-origin: content-box; 
+	-khtml-background-origin: content-box; 
+	background-origin: content-box;
+	-moz-background-clip: content-box; 
+	-webkit-background-clip: content-box; 
+	-khtml-background-clip: content-box; 
+	background-clip: content-box;
+	border: solid $border $borderColor;
+	border-radius: $content / 2 + $border;
+}
+
+.dot {
+ 	@include dot(100px, 20px, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+}
+
+@mixin array($dir, $distance, $width, $height, $left1, $l1, $h1, $left2, $l2, $h2) {
+ 	display: inline-block;
+ 	position: absolute;
+ 	top: 0;
+ 	bottom: 0;
+	#{$dir}: $distance;
+ 	width: $width;
+ 	height: $height;
+ 	margin: auto 0;
+ 	background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+ 	background-position: $left1 center;
+ 	background-size: $l1 $h1;
+ 	&:hover {
+ 		background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+ 		background-position: $left2 center;
+ 		background-size: $l2 $h2;
+ 	}
+}
+
+.home_hero_slide {
+	.container {
+		position: relative;
+		height: $homeHeroSlideHeight;
+		img {
+			width: $topbarWidth;
+			height: $homeHeroSlideHeight;
+		}
+		nav {
+			@include resetUlLi;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: $homeHeroSlideHeight;
+			width: $homeHeroSlideWidth;
+			background: rgba(0,0,0,0.3);
+			ul {
+				height: 100%;
+				width: 100%;
+				padding: 20px 0;
+				li {
+					display: inline-block;
+					width: $homeHeroSlideWidth - 2 * 30px;
+					height: ($homeHeroSlideHeight - 2 * 20px) / 10;
+					padding: 0 30px;
+					a {
+						text-decoration: none;
+						font-size: 16px;
+						color: rgba(255,255,255,0.9);
+						line-height: $homeHeroSlideHeight / 10;
+						vertical-align: middle;
+					}
+					&:hover {
+						background-color: rgb(253, 98, 6);
+					}
+					i {
+						float: right;
+						height: ($homeHeroSlideHeight - 2 * 20px) / 10;
+						width: ($homeHeroSlideHeight - 2 * 20px) / 10;
+						background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+						background-position: -100px center;
+						background-size: 150px 40px;
+					}
+				}
+			}
+		}
+		.home_hero_slide_aside {
+			visibility: hidden;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: $topbarWidth - $homeHeroSlideWidth;
+			height: $homeHeroSlideHeight;
+			background: white;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+			@include resetUlLi;
+			ul {
+				li {
+					display: inline-block;
+					width: ($topbarWidth - $homeHeroSlideWidth - 15px) / 4;
+					height: ($homeHeroSlideHeight) / 6;
+					text-align: center;
+					line-height: ($homeHeroSlideHeight) / 6;
+					i {
+						display: inline-block;
+						height: 30px;
+						width: 50px;
+						@include backgroundImg("https://i1.mifile.cn/f/i/g/2015/TV4-75.png?width=80&height=80");
+						vertical-align: middle;
+					}
+					span {
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+		.spot {
+			display: inline-block;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			div{
+				cursor: pointer;
+				margin: 0 6px;
+				@include dot(6px, 2px, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+				&:hover {
+					background: white;
+					border-color: rgba(0,0,0,0.6);
+				}
+			}
+		}
+		.arrayLeft {
+			 @include array(Left, $homeHeroSlideWidth, 40px, 70px, -75px, 150px, 80px, 2px, 150px, 80px);
+		}
+		.arrayRight {
+			 @include array(right, 0, 40px, 70px, -110px, 150px, 80px, -37px, 150px, 80px);
+		}
+	}
+}
