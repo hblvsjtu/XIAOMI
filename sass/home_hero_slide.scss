@@ -199,7 +199,7 @@ $homeHeroSubHeight: 170px;
 								margin-bottom: 4px;
 								font-size: 24px;
 								line-height: 24px;
-								@include backgroundImg("../picture/phone.png");
+								@include backgroundImg("./picture/phone.png");
 							}
 							span {
 								font-size: 12px

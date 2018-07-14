@@ -89,8 +89,8 @@ $navMenuHeight: 229px;
 			width: 296px;
 			height: 50px;
 			margin-top: 25px;
-			$url1: "../picture/search1.png";
-			$url2: "../picture/search2.png";
+			$url1: "./picture/search1.png";
+			$url2: "./picture/search2.png";
 			@include search(223px, 48px, $url1, $url2);
 			form ul{
 				z-index:1;
