@@ -2,17 +2,28 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 // 翻译sass文件
 gulp.task('sass', function() {
+  var plugins = [
+    autoprefixer({
+      browsers: ['last 2 version']
+    }),
+    cssnano()
+  ];
+
   return gulp.src('./sass/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
+    .pipe(postcss(plugins))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./css'));
 });
