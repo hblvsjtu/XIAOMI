@@ -39,7 +39,7 @@ gulp.task('babel', function() {
 gulp.task('sass', function() {
   var plugins = [
     autoprefixer({
-      browsers: ['last 2 version']
+      browsers: ['last 4 version']
     }),
     cssnano()
   ];
@@ -94,4 +94,4 @@ gulp.task('browser-sync', function() {
 gulp.watch('./sass/*.scss', ['sass']);
 gulp.watch('./js/*.js', ['babel']);
 gulp.watch('./picture/*', ['minipicture']);
-gulp.watch('.dist/*', [reload]);
+gulp.watch('./dist/*', [reload]);
