@@ -1,8 +1,8 @@
 /**
  * 
- * @authors Your Name (you@example.org)
+ * @authors Lvhongbin (hblvsjtu@163.com)
  * @date    2018-07-13 21:08:38
- * @version $Id$
+ * @version V0.0.1
  */
 
 // home_hero_slide

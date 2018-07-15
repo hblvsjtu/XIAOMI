@@ -19,6 +19,16 @@
 	}
 }
 
+// reset H and nav
+@mixin resetHAndNav {
+	margin: 0;  
+  	padding: 0;  
+  	border: 0;  
+  	font: inherit;  
+  	font-size: 100%;  
+  	vertical-align: baseline; 
+} 
+
 // text Vertical Middle
 @mixin textVerticalMiddle($height) {
 	line-height: $height;
@@ -29,6 +39,20 @@
 @mixin backgroundImg($url1) {
 	background: url($url1) no-repeat center;
 	background-size: contain;
+}
+
+
+// clear float
+@mixin clearFlaot {
+	&:after {
+		content: ".";
+		width: 0;
+		height: 0;
+		visibility: hidden;
+		display: block;
+		clear: both;
+		overflow:hidden;
+	}
 }
 
 /* 
@@ -335,3 +359,74 @@
  		background-size: $l2 $h2;
  	}
  }
+
+ @mixin box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom) {
+	width: $width;
+	height: $height;
+	text-align: center;
+	border-top: solid 1px yellow;
+	background: rgba(0,0,0,0.02);
+	img {
+		width: $imgWidth;
+		height: $imgHeight;
+		margin: $imgMarginToBottom auto;
+	}
+	h3 {
+		font-size: 16px;
+		line-height: 32px;
+		margin: 0;
+		color: black;
+	}
+	p {
+		font-size: 14px;
+		line-height: 28px;
+		margin: 0;
+	}
+	p:first-of-type {
+		color: rgba(0,0,0,0.3);
+	}
+	p:last-of-type {
+		margin: 5px;
+		color: #ff6700;
+	}
+ }
+
+ @mixin twoColTwoRow($width, $height, $headerHeight, $navWidth) {
+ 	height: $height;
+  	div {
+  		height: 100%;
+  		header {
+  			height: $headerHeight;
+ 			h2 {
+ 				@include resetHAndNav;
+ 				float: left;
+ 			}
+ 			div {
+ 				float: right;
+ 				height: $headerHeight;
+ 			}
+ 			&:after {
+ 				display: block;
+ 				content: "";
+ 				height: 0;
+ 				clear: both;
+ 			}
+ 	 	}
+ 	 	div {
+ 	 		height: $height - $headerHeight;
+ 	 		font-size: 0;
+ 	 		nav {
+ 	 			@include resetHAndNav;
+ 	 			float: left;
+ 	 			width: $navWidth;
+ 	 			height: 100%;
+ 	 			font-size: 0;
+ 	 		}
+ 	 		div {
+ 	 			float: right; 
+ 	 			height: 100%;
+ 	 			width: $width - $navWidth;
+ 	 		}
+ 	 	}
+  	}	
+ } 

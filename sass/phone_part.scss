@@ -1,0 +1,198 @@
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-14 09:29:54
+ * @version V0.0.1
+ * @descript phone_part.scss
+ */
+
+ // phone_part
+
+$topbarWidth: 1226px;
+$homeHeroSlideWidth: 235px;
+
+// reset H and nav
+@mixin resetHAndNav {
+	margin: 0;  
+  	padding: 0;  
+  	border: 0;  
+  	font: inherit;  
+  	font-size: 100%;  
+  	vertical-align: baseline; 
+} 
+
+// reset ul li
+@mixin resetUlLi {
+	ul {
+		list-style: none;
+		padding:0;
+		margin:0;
+		li {
+			list-style: none;
+			padding:0;
+			margin:0;
+		}
+	}
+}
+
+// clear float
+@mixin clearFlaot {
+	&:after {
+		content: ".";
+		width: 0;
+		height: 0;
+		visibility: hidden;
+		display: block;
+		clear: both;
+		overflow:hidden;
+	}
+}
+
+@mixin twoColTwoRow($width, $height, $headerHeight, $navWidth) {
+	height: $height;
+ 	div {
+ 		height: 100%;
+ 		header {
+ 			height: $headerHeight;
+			h2 {
+				@include resetHAndNav;
+				float: left;
+			}
+			div {
+				float: right;
+				height: $headerHeight;
+			}
+			&:after {
+				display: block;
+				content: "";
+				height: 0;
+				clear: both;
+			}
+	 	}
+	 	div {
+	 		height: $height - $headerHeight;
+	 		font-size: 0;
+	 		nav {
+	 			@include resetHAndNav;
+	 			float: left;
+	 			width: $navWidth;
+	 			height: 100%;
+	 			font-size: 0;
+	 		}
+	 		div {
+	 			float: right; 
+	 			height: 100%;
+	 			width: $width - $navWidth;
+	 		}
+	 	}
+ 	}	
+} 
+
+ @mixin box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom) {
+	width: $width;
+	height: $height;
+	text-align: center;
+	border-top: solid 1px yellow;
+	background: rgba(0,0,0,0.02);
+	img {
+		width: $imgWidth;
+		height: $imgHeight;
+		margin: $imgMarginToBottom auto;
+	}
+	h3 {
+		font-size: 16px;
+		line-height: 32px;
+		margin: 0;
+		color: black;
+	}
+	p {
+		font-size: 14px;
+		line-height: 28px;
+		margin: 0;
+	}
+	p:first-of-type {
+		color: rgba(0,0,0,0.3);
+	}
+	p:last-of-type {
+		margin: 5px;
+		color: #ff6700;
+	}
+ }
+
+.phone_part {
+	$width: $topbarWidth;
+	$height: 686px;
+	$headerHeight: 58px;
+	$navWidth: $homeHeroSlideWidth;
+	@include twoColTwoRow($width, $height, $headerHeight, $navWidth);
+	.container {
+		header {
+			h2 {
+				font-size: 30px;
+			}
+			div {
+				line-height: $headerHeight;
+				span {
+					font-size: 20px;
+					vertical-align: middle;
+				}
+			}
+		}
+		.phone_part_body {
+			nav {
+				a {
+					display: inline-block;
+					img{
+						width: $navWidth;
+					}
+				}
+			}
+			div {
+				@include resetUlLi;
+				ul {
+					height: $height - $headerHeight;
+					li {
+						float: left;
+						position: relative;
+						display: inline-block;
+						transition: box-shadow 0.5s, transform 0.5s;
+						transition-time-function: ease-in-out;
+						margin-left: 10px;
+						span {
+							display: inline-block;
+							position: absolute;
+							left: 50%;
+							top: 0;
+							font-size: 14px;
+							padding: 0 5px;
+							color: white;
+							background: red;
+							transform: translateX(-50%);
+						}
+						a {
+							display: inline-block;
+							div {
+								$height: 686px;
+								$headerHeight: 58px;
+								$width: ($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px;
+								$height: ($height - $headerHeight - 24px) / 2;
+								$imgWidth: 160px;
+								$imgHeight: 160px;
+								$imgMarginToBottom: 10px;
+								@include box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom);
+								border: none;
+							}
+						}
+						&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4) {
+							margin-bottom: 12px;
+						}
+						&:hover {
+							box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+							transform: translateY(-5px);
+						}
+					}
+				}
+			}
+		}
+	}
+}

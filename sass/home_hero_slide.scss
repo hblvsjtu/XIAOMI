@@ -52,7 +52,7 @@ $homeHeroSubHeight: 170px;
  	@include dot(100px, 20px, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
 }
 
-@mixin array($dir, $distance, $width, $height, $left1, $l1, $h1, $left2, $l2, $h2) {
+@mixin array($url, $dir, $distance, $width, $height, $left1, $l1, $h1, $left2, $l2, $h2) {
  	display: inline-block;
  	position: absolute;
  	top: 0;
@@ -61,11 +61,11 @@ $homeHeroSubHeight: 170px;
  	width: $width;
  	height: $height;
  	margin: auto 0;
- 	background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+ 	background: url($url) no-repeat;
  	background-position: $left1 center;
  	background-size: $l1 $h1;
  	&:hover {
- 		background: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png) no-repeat;
+ 		background: url($url) no-repeat;
  		background-position: $left2 center;
  		background-size: $l2 $h2;
  	}
@@ -74,7 +74,7 @@ $homeHeroSubHeight: 170px;
 .home_hero_slide {
 	.container {
 		position: relative;
-		height: $homeHeroSlideHeight;
+		height: $homeHeroSlideHeight + $homeHeroSubHeight;
 		img {
 			width: $topbarWidth;
 			height: $homeHeroSlideHeight;
@@ -150,7 +150,7 @@ $homeHeroSubHeight: 170px;
 		.spot {
 			display: inline-block;
 			position: absolute;
-			bottom: 10px;
+			top: $homeHeroSlideHeight - 30px;
 			right: 10px;
 			div{
 				cursor: pointer;
@@ -163,10 +163,14 @@ $homeHeroSubHeight: 170px;
 			}
 		}
 		.arrayLeft {
-			 @include array(Left, $homeHeroSlideWidth, 40px, 70px, -75px, 150px, 80px, 2px, 150px, 80px);
+			 $url: "https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png";
+			 @include array($url, Left, $homeHeroSlideWidth, 40px, 70px, -75px, 150px, 80px, 2px, 150px, 80px);
+			 top: -$homeHeroSubHeight;
 		}
 		.arrayRight {
-			 @include array(right, 0, 40px, 70px, -110px, 150px, 80px, -37px, 150px, 80px);
+			$url: "https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png";
+			 @include array($url, right, 0, 40px, 70px, -110px, 150px, 80px, -37px, 150px, 80px);
+			 top: -$homeHeroSubHeight;
 		}
 		.home_hero_sub {
 			.home_hero_sub_nav {

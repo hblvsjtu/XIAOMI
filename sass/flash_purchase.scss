@@ -1,0 +1,192 @@
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-14 09:29:54
+ * @version V0.0.1
+ * @descript flash_purchase.scss
+ */
+
+ // flash_purchase
+
+$topbarWidth: 1226px;
+$homeHeroSlideWidth: 235px;
+
+ // reset ul li
+ @mixin resetUlLi {
+ 	ul {
+ 		list-style: none;
+ 		padding:0;
+ 		margin:0;
+ 		li {
+ 			list-style: none;
+ 			padding:0;
+ 			margin:0;
+ 		}
+ 	}
+ }
+
+ @mixin array($url, $dir, $distance, $width, $height, $left1, $l1, $h1, $left2, $l2, $h2) {
+  	display: inline-block;
+  	position: absolute;
+  	top: 0;
+  	bottom: 0;
+ 	#{$dir}: $distance;
+  	width: $width;
+  	height: $height;
+  	margin: auto 0;
+  	background: url($url) no-repeat;
+  	background-position: $left1 center;
+  	background-size: $l1 $h1;
+  	&:hover {
+  		background: url($url) no-repeat;
+  		background-position: $left2 center;
+  		background-size: $l2 $h2;
+  	}
+ }
+
+  @mixin box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom) {
+ 	width: $width;
+ 	height: $height;
+ 	text-align: center;
+ 	border-top: solid 1px yellow;
+ 	background: rgba(0,0,0,0.02);
+ 	img {
+ 		width: $imgWidth;
+ 		height: $imgHeight;
+ 		margin: $imgMarginToBottom auto;
+ 	}
+ 	h3 {
+ 		font-size: 16px;
+ 		line-height: 32px;
+ 		margin: 0;
+ 		color: black;
+ 	}
+ 	p {
+ 		font-size: 14px;
+ 		line-height: 28px;
+ 		margin: 0;
+ 	}
+ 	p:first-of-type {
+ 		color: rgba(0,0,0,0.3);
+ 	}
+ 	p:last-of-type {
+ 		margin: 5px;
+ 		color: #ff6700;
+ 	}
+  }
+
+.flash_purchase {
+	margin-top: 10px;
+ 	.container {
+	 	header {
+	 		height: 58px;
+			h2 {
+				display: inline-block;
+				margin: 0;
+				font-size: 22px;
+				font-weight: 200;
+				line-height: 58px;
+				color: #333;
+			}
+			div {
+				display: inline-block;
+				float: right;
+				position: relative;
+				top:14px;
+				width: 80px;
+				height: 30px;
+				border: solid 1px #e0e0e0;
+				i {
+					vertical-align: middle;
+					
+					$url: "https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png";
+					&:first-of-type {
+						border-right: solid 1px #e0e0e0;
+						@include array($url, Left, 0, 40px, 30px, -75px, 150px, 50px, 2px, 150px, 50px);
+						opacity: 0.4;
+					}
+					&:last-of-type {
+						@include array($url, right, 0, 40px, 30px, -110px, 150px, 50px, -37px, 150px, 50px);
+					}
+				}
+			}
+	 	}
+	 	.flash_purchase_body {
+	 		font-size: 0;
+	 		@include resetUlLi;
+	 		.time {
+	 			display: inline-block;
+	 			float: left;
+	 			width: $homeHeroSlideWidth;
+	 			height: 340px;
+	 			text-align: center;
+	 			border-top: solid 1px yellow;
+	 			background: rgba(0,0,0,0.02);
+	 			h3 {
+ 				    font-size: 25px;
+ 				    line-height: 1em;
+ 				    margin-top: 30px;
+ 				    color: #ef3a3b;
+	 			}
+	 			img {
+					height: 80px;
+					width: 50px;
+					margin: 25px auto;
+	 			}
+	 			p{
+					color: rgba(0,0,0,0.54);
+					font-size: 15px;
+	 			}
+	 			div {
+					width: 168px;
+					margin: 28px auto 0;
+					span:nth-of-type(2n-1) {
+						float: left;
+						width: 46px;
+						height: 46px;
+						font-size: 24px;
+						line-height: 46px;
+						color: #fff;
+						background: #605751;
+					}
+					span:nth-of-type(2n) {
+						float: left;
+						width: 15px;
+						height: 46px;
+						line-height: 46px;
+						font-size: 28px;
+						color: #605751;
+					}
+	 			}
+	 		}
+	 		.box_container {
+	 			display: inline-block;
+	 			float: right;
+	 			width: $topbarWidth - $homeHeroSlideWidth - 2px;
+	 			overflow: hidden;
+		 		ul {
+		 			width: $topbarWidth + (($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px) * 2 + 20px;
+		 			height: 340px;
+		 			transform: translateX(-492px);
+		 			transition: transform 1s;
+		 			transition-time-function: ease-in-out;
+		 		}
+		 		ul li {
+		 			display: inline-block;
+		 			float: left;
+		 			margin-left: 10px;
+		 			a {
+		 				text-decoration: none;
+		 			}
+		 		}
+				.box {
+					$width: ($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px;
+					@include box($width, 340px, 160px, 160px, 40px);
+				}
+	 		}
+	 	}
+ 	}
+ }
+
+
+

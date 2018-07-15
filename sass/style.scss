@@ -25,6 +25,12 @@ $topbarInHeight: 18px;
 	height: 100%;
 	margin-right: auto;
 	margin-left: auto;
+	&:after {
+		display: block;
+		content: "";
+		height: 0;
+		clear: both;
+	}
 }
 
 .topbar {
@@ -172,6 +178,19 @@ $navMenuHeight: 229px;
 								
 			}
 			
+		}
+	}
+}
+
+.flash_purchase_finish_box {
+	height: 120px;
+	margin: 42px 0;
+	.container {
+		a {
+			display: inline-block;
+			img {
+				width: 1226px;
+			}
 		}
 	}
 }
