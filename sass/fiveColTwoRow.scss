@@ -144,6 +144,73 @@
   	}	
  } 
 
+ // super box
+ @mixin superBox($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom, $bgColor) {
+ 	position: relative;
+ 	display: inline-block;
+ 	transition: box-shadow 0.5s, transform 0.5s;
+ 	transition-time-function: ease-in-out;
+ 	margin-left: 10px;
+ 	span {
+ 		display: inline-block;
+ 		position: absolute;
+ 		left: 50%;
+ 		top: 0;
+ 		z-index: 1;
+ 		font-size: 14px;
+ 		padding: 0 5px;
+ 		color: white;
+ 		background: red;
+ 		transform: translateX(-50%);
+ 	}
+ 	a {
+ 		display: inline-block;
+ 		text-decoration: none;
+ 		div {
+ 			@include box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom);
+ 			border: none;
+ 			background: $bgColor;
+ 		}
+ 	}
+ 	section {
+ 		display: block;
+ 		position: absolute;
+ 		bottom:0;
+ 		left:0;
+ 		right:0;
+ 		z-index: 1;
+ 		height: 75px;
+ 		background: #ff6700;
+ 		opacity: 0.7;
+ 		clip: rect(75px $width 75px 0);
+ 		transition: clip 0.5s;
+ 		h3 {
+ 			margin: 10px 40px;
+ 			height: 28px;
+ 			font-size: 14px;
+ 			line-height:14px;
+ 			text-overflow: ellipsis;
+ 			overflow: hidden;
+ 			color: white;
+ 		}
+ 		p{
+ 			margin: 0 40px;
+ 			font-size: 12px;
+ 			color: rgba(255,255,255,0.5);
+ 			text-overflow: ellipsis;
+ 			white-space: nowrap;
+ 			overflow: hidden;
+ 		}
+ 	}
+ 	&:hover {
+ 		box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+ 		transform: translateY(-5px);
+ 		section {
+ 			clip: rect(0 $width 75px 0);
+ 		}
+ 	}
+ }
+
  .fiveColTwoRow {
  	$width: $topbarWidth;
 	$height: 686px;
@@ -171,13 +238,13 @@
 					span {
 						cursor: pointer;
 						display: inline-block;
-						font-size: 16px;
 						height: 25px;
+						font-size: 16px;
 						&:hover {
 							color: #ff6700;
 							border-bottom: solid 1px #ff6700;
 						}
-					}
+					}	
 				}
 			}
 		}
@@ -195,64 +262,36 @@
 						
 					}
 					&:first-of-type {
-						margin-bottom: 10px;
+						margin-bottom: 12px;
 					}
-				}
-				&:hover+div ul:nth-of-type(3) {
-					display:none;
 				}
 			}
 			div {
 				position: relative;
 				@include resetUlLi;
 				ul {
+					display: none;
 					position: absolute;
 					right:0;
 					top:0;
 					height: $height - $headerHeight;
 					li {
 						float: left;
-						position: relative;
-						display: inline-block;
-						transition: box-shadow 0.5s, transform 0.5s;
-						transition-time-function: ease-in-out;
-						margin-left: 10px;
-						span {
-							display: inline-block;
-							position: absolute;
-							left: 50%;
-							top: 0;
-							z-index: 1;
-							font-size: 14px;
-							padding: 0 5px;
-							color: white;
-							background: red;
-							transform: translateX(-50%);
-						}
-						a {
-							display: inline-block;
-							div {
-								$height: 686px;
-								$headerHeight: 58px;
-								$width: ($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px;
-								$height: ($height - $headerHeight - 24px) / 2;
-								$imgWidth: 160px;
-								$imgHeight: 160px;
-								$imgMarginToBottom: 10px;
-								@include box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom);
-								border: none;
-								background: white;
-							}
-						}
+						$height: 686px;
+						$headerHeight: 58px;
+						$width: ($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px;
+						$height: ($height - $headerHeight - 24px) / 2;
+						$imgWidth: 160px;
+						$imgHeight: 160px;
+						$imgMarginToBottom: 10px;
+						@include superBox($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom, white);
+						border: none;
+						background: white;
+
 						&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4) {
 							margin-bottom: 12px;
 						}
-						&:hover {
-							box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-							transform: translateY(-5px);
-						}
 
-						// last two list
 						&:nth-of-type(8), &:nth-of-type(9) {
 							a {
 								display: inline-block;
@@ -283,6 +322,10 @@
 						&:nth-of-type(8) {
 							margin-bottom: 12px;
 						}
+					}
+					
+					&:first-of-type {
+						display: block;
 					}
 				}
 			}

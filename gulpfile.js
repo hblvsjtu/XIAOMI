@@ -26,7 +26,7 @@ gulp.task('babel', function() {
     .pipe(babel({
       presets: ['env']
     }))
-    .pipe(concat('all.js'))
+    .pipe(concat('all.min.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))
@@ -39,7 +39,7 @@ gulp.task('babel', function() {
 gulp.task('sass', function() {
   var plugins = [
     autoprefixer({
-      browsers: ['last 4 version']
+      browsers: ['last 3 version']
     }),
     cssnano()
   ];
@@ -50,6 +50,7 @@ gulp.task('sass', function() {
       outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(postcss(plugins))
+    .pipe(concat('all.min.css'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });

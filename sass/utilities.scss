@@ -449,3 +449,76 @@
   	}	
  } 
 
+
+ // super box
+ // <li><span>减10元</span><a href=""><div class="phone_part_box"><img src="//i1.mifile.cn/a1/pms_1524883847.49276938!220x220.jpg" alt="小米电视4A 43英寸青春版"><h3>小米经典商务双肩包</h3><p>实用商务时尚范</p><p>89元</p></div></a><section><h3>我是评论，这款产品非常棒！</h3><p>来自星星的你</p></section></li>
+  @mixin superBox($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom, $bgColor) {
+  	position: relative;
+  	display: inline-block;
+  	transition: box-shadow 0.5s, transform 0.5s;
+  	transition-time-function: ease-in-out;
+  	margin-left: 10px;
+  	span {
+  		display: inline-block;
+  		position: absolute;
+  		left: 50%;
+  		top: 0;
+  		z-index: 1;
+  		font-size: 14px;
+  		padding: 0 5px;
+  		color: white;
+  		background: red;
+  		transform: translateX(-50%);
+  	}
+  	a {
+  		display: inline-block;
+  		text-decoration: none;
+  		div {
+  			@include box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom);
+  			border: none;
+  			background: $bgColor;
+  		}
+  	}
+  	section {
+  		display: block;
+  		position: absolute;
+  		bottom:0;
+  		left:0;
+  		right:0;
+  		z-index: 1;
+  		height: 75px;
+  		background: #ff6700;
+  		opacity: 0.7;
+  		clip: rect(75px $width 75px 0);
+  		transition: clip 0.5s;
+  		h3 {
+  			margin: 10px 40px;
+  			height: 28px;
+  			font-size: 14px;
+  			line-height:14px;
+  			text-overflow: ellipsis;
+  			overflow: hidden;
+  			color: white;
+  		}
+  		p{
+  			margin: 0 40px;
+  			font-size: 12px;
+  			color: rgba(255,255,255,0.5);
+  			text-overflow: ellipsis;
+  			white-space: nowrap;
+  			overflow: hidden;
+  		}
+  	}
+  	&:hover {
+  		box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  		transform: translateY(-5px);
+  		section {
+  			clip: rect(0 $width 75px 0);
+  		}
+  	}
+  }
+
+ .superBox {
+ 	@include superBox(234px, 306px, 160px, 160px, 10px, grey);
+ }
+
