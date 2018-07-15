@@ -21,7 +21,7 @@ var targetTime = {
 	year: 2018,
 	month: 7,
 	day: 15,
-	hour: 11,
+	hour: 22,
 	minute: 0,
 	second: 0
 }

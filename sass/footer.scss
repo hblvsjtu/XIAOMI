@@ -1,0 +1,219 @@
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-14 09:29:54
+ * @version V0.0.1
+ * @descript footer.scss
+ */
+
+ // footer
+
+ $topbarWidth: 1226px;
+ $homeHeroSlideWidth: 235px;
+
+ // container
+.container {
+ 	width: $topbarWidth;
+ 	height: 100%;
+ 	margin-right: auto;
+ 	margin-left: auto;
+ 	&:after {
+ 		display: block;
+ 		content: "";
+ 		height: 0;
+ 		clear: both;
+ 	}
+ }
+
+ // reset ul li
+ @mixin resetUlLi {
+ 	ul {
+ 		list-style: none;
+ 		padding:0;
+ 		margin:0;
+ 		li {
+ 			list-style: none;
+ 			padding:0;
+ 			margin:0;
+ 		}
+ 	}
+ }
+
+
+ /* 
+  * Horizontal Nav List
+  * outer need BFC container
+  */
+ @mixin HorizontalNav($Height, $InHeight, $left, $right, $color, $hovercolor) {
+ 	// reset style
+ 	@include resetUlLi;
+ 	ul {
+ 		line-height: $InHeight;
+ 		margin-top: ($Height - $InHeight)/2;
+ 		margin-left: $left;
+ 		margin-right: $right;
+ 		vertical-align: middle;
+ 	}
+ 	ul li {
+ 		display: inline-block;
+ 		height: 100%;
+ 		text-align: center;
+ 		padding: 0 8px;
+ 		border-right: solid 1px rgb(66,66,66);
+ 	}
+ 	ul li:first-child {
+ 		padding-left: 0;
+ 	}
+ 	ul li:last-child {
+ 		border-right: solid 0px transparent;
+ 		padding-right: 0;
+ 	}
+ 	ul li a {
+ 		text-decoration: none;
+ 		color: $color;
+ 		&:hover {
+ 			color: $hovercolor;
+ 		}
+ 	}
+ }
+
+ footer {
+ 	.container {
+ 		.footer_fix {
+ 			text-align: center;
+ 			padding: 27px 0;
+ 			border-bottom: 1px solid #e0e0e0;
+ 			$Height: 75px;
+ 			$InHeight: 25px;
+ 			$left: 0;
+ 			$right: 0;
+ 			$color: 0;
+ 			$hovercolor: #ff6700;
+ 			@include HorizontalNav($Height, $InHeight, $left, $right, $color, $hovercolor);
+ 			ul {
+ 				font-size: 0;
+ 			}
+ 			ul li {
+ 				width: ($topbarWidth - 4*$InHeight - 4*1px) / 5;
+ 				border-right: 1px solid #e0e0e0;
+ 				a {
+ 					font-size: 16px;
+ 					line-height: 25px;
+ 					text-align: center;
+ 					color: black;
+ 				}
+ 			}
+ 		}
+ 		.footer_body {
+ 			display: inline-block;
+ 			padding: 40px 0;
+ 			.footer_help {
+ 				float: left;
+ 				display: inline-block;
+ 				@include resetUlLi;
+ 				ul {
+	 				float: left;
+				    width: 160px;
+				    height: 112px;
+				    li {
+				    	a {
+				    		text-decoration: none;
+				    		color: rgba(0,0,0,0.5);
+				    	}
+				    }
+ 				}
+ 			}
+ 			.footer_service {
+				float: right;
+				width: 251px;
+				height: 112px;
+				border-left: 1px solid #e0e0e0;
+				text-align: center;
+				color: #616161;
+				.phone {
+					margin: 0 0 5px;
+					font-size: 22px;
+					line-height: 1;
+					color: #ff6700;
+				}
+				p {
+					margin: 0 0 16px;
+					font-size: 12px;
+					text-align: center;
+					color: #616161;
+				}
+				a {
+					text-decoration: none;
+					display: inline-block;
+					width: 118px;
+					height: 28px;
+					font-size: 12px;
+					line-height: 28px;
+					border: solid 1px #ff6700;
+					background: #fff;
+					color: #ff6700;
+				}
+				
+ 			}
+ 		}
+
+ 		.footer-info {
+ 			.footer-info_content {
+ 				display: inline-block;
+ 				width: 100%;
+				.footer_info_logo {
+					float: left;
+				    width: 62px;
+				    a {
+				    	position: relative;
+					    display: block;
+					    width: 55px;
+					    height: 55px;
+					    background-color: #ff6700;
+					    background: url("https://s01.mifile.cn/i/logo-footer.png?v2") no-repeat center;
+					    background-size: contain;
+				    }
+				}
+				.footer_info_text {
+					float: left;
+					font-size: 12px;
+					$Height: 16px;
+					$InHeight: 16px;
+					$left: 0;
+					$right: 0;
+					$color: #757575;
+					$hovercolor: #ff6700;
+					@include HorizontalNav($Height, $InHeight, $left, $right, $color, $hovercolor);
+					ul li {
+						font-size: 14px;
+						padding: 0 1px;
+					}
+					p {
+						margin: 0;
+						padding: 0;
+						color: rgba(0,0,0,0.5);
+						a {
+							text-decoration: none;
+							color: rgba(0,0,0,0.5);
+						}	
+					}
+				}
+				.footer_info_link {
+					float: right;
+					a img {
+						width: auto;
+						height: 28px;
+						margin-left: 0px;
+					}
+				}
+ 			}
+ 			.footer-info_slogan {
+ 				height: 19px;
+ 				font-size: 20px;
+				color: rgba(0,0,0,0.5);
+				text-align: center;
+ 			}
+ 		}
+ 	}
+ 	
+ }

@@ -5,6 +5,9 @@
  * @version V0.0.1
  */
 
+ $topbarWidth: 1226px;
+ $homeHeroSlideWidth: 235px;
+
 // reset ul li
 @mixin resetUlLi {
 	ul {
@@ -52,6 +55,20 @@
 		display: block;
 		clear: both;
 		overflow:hidden;
+	}
+}
+
+// container
+.container {
+	width: $topbarWidth;
+	height: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	&:after {
+		display: block;
+		content: "";
+		height: 0;
+		clear: both;
 	}
 }
 
