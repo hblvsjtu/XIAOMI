@@ -181,8 +181,13 @@ $navMenuHeight: 229px;
 		}
 	}
 }
+.market_body {
+	display: inline-block;
+	width: 100%;
+	background: #e0e0e0;
+}
 
-.flash_purchase_finish_box {
+.finish_box {
 	height: 120px;
 	margin: 42px 0;
 	.container {

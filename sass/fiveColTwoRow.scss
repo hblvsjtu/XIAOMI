@@ -1,0 +1,291 @@
+/**
+ * 
+ * @authors Lvhongbin (hblvsjtu@163.com)
+ * @date    2018-07-14 09:29:54
+ * @version V0.0.1
+ * @descript fiveColTwoRow.scss
+ */
+
+ //fiveColTwoRow.scss
+
+ $topbarWidth: 1226px;
+ $homeHeroSlideWidth: 235px;
+
+ // reset ul li
+ @mixin resetUlLi {
+ 	ul {
+ 		list-style: none;
+ 		padding:0;
+ 		margin:0;
+ 		li {
+ 			list-style: none;
+ 			padding:0;
+ 			margin:0;
+ 		}
+ 	}
+ }
+
+ // reset H and nav
+ @mixin resetHAndNav {
+ 	margin: 0;  
+   	padding: 0;  
+   	border: 0;  
+   	font: inherit;  
+   	font-size: 100%;  
+   	vertical-align: baseline; 
+ } 
+
+
+ /* 
+  * Horizontal Nav List
+  * outer need BFC container
+  */
+ @mixin HorizontalNav($Height, $InHeight, $left, $right, $color, $hovercolor) {
+ 	// reset style
+ 	@include resetUlLi;
+ 	ul {
+ 		line-height: $InHeight;
+ 		margin-top: ($Height - $InHeight)/2;
+ 		margin-left: $left;
+ 		margin-right: $right;
+ 		vertical-align: middle;
+ 	}
+ 	ul li {
+ 		display: inline-block;
+ 		height: 100%;
+ 		text-align: center;
+ 		padding: 0 8px;
+ 		border-right: solid 1px rgb(66,66,66);
+ 	}
+ 	ul li:first-child {
+ 		padding-left: 0;
+ 	}
+ 	ul li:last-child {
+ 		border-right: solid 0px transparent;
+ 		padding-right: 0;
+ 	}
+ 	ul li a {
+ 		text-decoration: none;
+ 		color: $color;
+ 		&:hover {
+ 			color: $hovercolor;
+ 		}
+ 	}
+ }
+
+  @mixin box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom) {
+ 	width: $width;
+ 	height: $height;
+ 	text-align: center;
+ 	border-top: solid 1px yellow;
+ 	background: rgba(0,0,0,0.02);
+ 	img {
+ 		width: $imgWidth;
+ 		height: $imgHeight;
+ 		margin: $imgMarginToBottom auto;
+ 	}
+ 	h3 {
+ 		font-size: 16px;
+ 		line-height: 32px;
+ 		margin: 0;
+ 		color: black;
+ 	}
+ 	p {
+ 		font-size: 14px;
+ 		line-height: 28px;
+ 		margin: 0;
+ 	}
+ 	p:first-of-type {
+ 		color: rgba(0,0,0,0.3);
+ 	}
+ 	p:last-of-type {
+ 		margin: 5px;
+ 		color: #ff6700;
+ 	}
+  }
+
+ @mixin twoColTwoRow($width, $height, $headerHeight, $navWidth) {
+ 	height: $height;
+  	div {
+  		height: 100%;
+  		header {
+  			height: $headerHeight;
+ 			h2 {
+ 				@include resetHAndNav;
+ 				float: left;
+ 			}
+ 			div {
+ 				float: right;
+ 				height: $headerHeight;
+ 			}
+ 			&:after {
+ 				display: block;
+ 				content: "";
+ 				height: 0;
+ 				clear: both;
+ 			}
+ 	 	}
+ 	 	div {
+ 	 		height: $height - $headerHeight;
+ 	 		font-size: 0;
+ 	 		nav {
+ 	 			@include resetHAndNav;
+ 	 			float: left;
+ 	 			width: $navWidth;
+ 	 			height: 100%;
+ 	 			font-size: 0;
+ 	 		}
+ 	 		div {
+ 	 			float: right; 
+ 	 			height: 100%;
+ 	 			width: $width - $navWidth;
+ 	 		}
+ 	 	}
+  	}	
+ } 
+
+ .fiveColTwoRow {
+ 	$width: $topbarWidth;
+	$height: 686px;
+	$headerHeight: 58px;
+	$navWidth: $homeHeroSlideWidth;
+	@include twoColTwoRow($width, $height, $headerHeight, $navWidth);
+	.container {
+		.header {
+			h2 {
+				float: left;
+				font-size: 30px;
+			}
+			div {
+				float: right;
+				$Height: $headerHeight;
+				$InHeight: 20px;
+				$left: 0;
+				$right: 0;
+				$color: black;
+				$hovercolor: #ff6700;
+				@include HorizontalNav($Height, $InHeight, $left, $right, $color, $hovercolor);
+				ul li {
+					border: none;
+					vertical-align: middle;
+					span {
+						cursor: pointer;
+						display: inline-block;
+						font-size: 16px;
+						height: 25px;
+						&:hover {
+							color: #ff6700;
+							border-bottom: solid 1px #ff6700;
+						}
+					}
+				}
+			}
+		}
+		.body {
+			.nav {
+				@include resetUlLi;
+				ul li {
+					display: inline-block;
+					float: left;
+					a {
+						display: inline-block;
+						img {
+							width:$homeHeroSlideWidth;
+						}
+						
+					}
+					&:first-of-type {
+						margin-bottom: 10px;
+					}
+				}
+				&:hover+div ul:nth-of-type(3) {
+					display:none;
+				}
+			}
+			div {
+				position: relative;
+				@include resetUlLi;
+				ul {
+					position: absolute;
+					right:0;
+					top:0;
+					height: $height - $headerHeight;
+					li {
+						float: left;
+						position: relative;
+						display: inline-block;
+						transition: box-shadow 0.5s, transform 0.5s;
+						transition-time-function: ease-in-out;
+						margin-left: 10px;
+						span {
+							display: inline-block;
+							position: absolute;
+							left: 50%;
+							top: 0;
+							z-index: 1;
+							font-size: 14px;
+							padding: 0 5px;
+							color: white;
+							background: red;
+							transform: translateX(-50%);
+						}
+						a {
+							display: inline-block;
+							div {
+								$height: 686px;
+								$headerHeight: 58px;
+								$width: ($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px;
+								$height: ($height - $headerHeight - 24px) / 2;
+								$imgWidth: 160px;
+								$imgHeight: 160px;
+								$imgMarginToBottom: 10px;
+								@include box($width, $height, $imgWidth, $imgHeight, $imgMarginToBottom);
+								border: none;
+								background: white;
+							}
+						}
+						&:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4) {
+							margin-bottom: 12px;
+						}
+						&:hover {
+							box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+							transform: translateY(-5px);
+						}
+
+						// last two list
+						&:nth-of-type(8), &:nth-of-type(9) {
+							a {
+								display: inline-block;
+								div{
+									width: ($topbarWidth - $homeHeroSlideWidth - 4 * 10px )/4 - 1px;
+									height: ($height - 12px) / 2;
+									h3 {
+										margin: 35px 110px 5px 30px;
+										color: #000;
+										font-size: 16px;
+										line-height: 32px;
+										text-overflow: ellipsis;
+										white-space: nowrap;
+										overflow: hidden;
+									}
+									p {
+										margin: 0 110px 0 30px;
+									}
+									img {
+										margin: 32px 24px 0 0;
+										width: 80px;
+										height: 80px;
+										float: right;
+									}
+								}
+							}
+						}
+						&:nth-of-type(8) {
+							margin-bottom: 12px;
+						}
+					}
+				}
+			}
+		}
+	}
+ }

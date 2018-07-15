@@ -27,10 +27,8 @@ var targetTime = {
 }
 
 function timecount() {
-	console.log("hello");
 	let leftTime = (new Date(targetTime.year, targetTime.month - 1, targetTime.day, targetTime.hour, targetTime.minute, targetTime.second)) - (new Date()); //计算剩余的毫秒数
 	leftTime /= 1000;
-	console.log(leftTime);
 	let hour = 0,
 		min = 0,
 		sec = 0;
