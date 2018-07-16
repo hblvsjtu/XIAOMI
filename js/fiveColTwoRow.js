@@ -18,6 +18,11 @@ function fiveColTwoRow(part, amount, index) {
 				} else {
 					$(`#${part}_select` + i).attr("style", "color: #ff6700;border-bottom: solid 1px #ff6700;");
 					$(`#${part}_content` + i).attr("style", "display: block");
+					let myimg = document.getElementById(`${part}_content` + i).querySelectorAll("img");
+					let length = myimg.length;
+					for (let i = 0; i < length; i++) {
+						myimg[i].setAttribute("src", myimg[i].getAttribute("data-src"));
+					}
 				}
 				event.stopPropagation();
 			}
