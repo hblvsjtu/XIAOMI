@@ -25,35 +25,15 @@ function lazyLoad(imgLazyLoad) {
     // 通过这句赋值就能在任何情况下获得scrollTop 值。 
     let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
     // ie不支持forEach方法
-    if (typeof Array.prototype.forEach != "function") {
-        let length = imgLazyLoad.length;
-        for (let i = 0; i < length; i++) {
-            let src = imgLazyLoad[i].getAttribute('src');
-            let data_src = imgLazyLoad[i].getAttribute('data-src');
-            if (src == '' && data_src != "" &&
-                (imgLazyLoad[i].offsetTop < seeHeight + scrollTop && imgLazyLoad[i].offsetTop + imgLazyLoad[i].offsetHeight > scrollTop)) {
-                imgLazyLoad[i].src = data_src;
-            }
+    let length = imgLazyLoad.length;
+    for (let i = 0; i < length; i++) {
+        let src = imgLazyLoad[i].getAttribute('src');
+        let data_src = imgLazyLoad[i].getAttribute('data-src');
+        if (src == '' && data_src != "" &&
+            (imgLazyLoad[i].offsetTop < seeHeight + scrollTop && imgLazyLoad[i].offsetTop + imgLazyLoad[i].offsetHeight > scrollTop)) {
+            imgLazyLoad[i].src = data_src;
         }
-    } else {
-        imgLazyLoad.forEach((item, index) => {
-            // offsetLeft、offsetTop
-            // 这两个属性与offsetParent有关，查阅了别的文档，其英文解释：
-            // 返回该对象元素边界的左上角顶点相对于offsetParent的左上角顶点(含margin)的水平偏移量。
-            let src = item.getAttribute('src');
-            let data_src = item.getAttribute('data-src');
-            if (src == '' && data_src != "" &&
-                (item.offsetTop < seeHeight + scrollTop && item.offsetTop + item.offsetHeight > scrollTop)) {
-                item.src = data_src;
-                // console.log('index = ' + index);
-                // console.log('item.offsetTop = ' + item.offsetTop);
-                // console.log('seeHeight = ' + seeHeight);
-                // console.log('scrollTop = ' + scrollTop);
-                // console.log('item.offsetTop + item.offsetHeight = ' + item.offsetTop + item.offsetHeight);
-            }
-        });
     }
-
 }
 lazyLoad(imgLazyLoad);
 

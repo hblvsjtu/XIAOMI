@@ -20,7 +20,7 @@ $("#flash_purchase_right").bind('click', () => {
 var targetTime = {
 	year: 2018,
 	month: 7,
-	day: 16,
+	day: 17,
 	hour: 22,
 	minute: 0,
 	second: 0
