@@ -17,6 +17,47 @@
 <link rel="stylesheet" type="text/css" href="./dist/all.min.css">
 </head>
 <body>
+    <!-- 登陆模块，按需加载 -->
+    <div id="success_dilog"></div>
+    <script type="text/x-template" id="login_in">
+        <div style="position: fixed; height: 100%; width: 100%; background: rgba(0,0,0,0.5); z-index:2;" class="jumbotron">
+            <form action="#" style="display: inline-block;position: absolute;top: 0;left: 0;bottom: 0; right: 0; width: 400px; height: 260px; margin: auto; padding: 20px 50px; background: yellow; border-radius: 5px; font-size: 30px;">
+            Username:</br>
+            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></br>
+            Password:</br>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1"></br>
+            <div style="display: inline-block; width: 100%; text-align: center;">
+                <button type="submit" class="btn btn-primary btn-lg" style="margin: 15px;">确定</button>
+                <button type="reset" class="btn btn-primary btn-lg" style="margin: 15px;">重置</button>
+                <button type="button" class="btn btn-primary btn-lg" style="margin: 15px;" onclick="(function() {
+                document.getElementById('success_dilog').innerHTML='';
+            })()">取消</button>
+            </div>
+            </form>
+        </div>  
+    </script>
+    <script type="text/x-template" id="login_up">
+        <div style="position: fixed; height: 100%; width: 100%; background: rgba(0,0,0,0.5); z-index:2;" class="jumbotron">
+            <form action="#" style="display: inline-block;position: absolute;top: 0;left: 0;bottom: 0; right: 0; width: 400px; height: 430px; margin: auto; padding: 20px 50px; background: yellow; border-radius: 5px; font-size: 30px;">
+            Username:</br>
+            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></br>
+            Password:</br>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1"></br>
+            Password again:</br>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1"></br>
+            mail:</br>
+            <input type="text" class="form-control" placeholder="mail" aria-describedby="basic-addon1"></br>
+            <div style="display: inline-block; width: 100%; text-align: center;">
+                <button type="submit" class="btn btn-primary btn-lg" style="margin: 15px;">确定</button>
+                <button type="reset" class="btn btn-primary btn-lg" style="margin: 15px;">重置</button>
+                <button type="button" class="btn btn-primary btn-lg" style="margin: 15px;" onclick="(function() {
+                document.getElementById('success_dilog').innerHTML='';
+            })()">取消</button>
+            </div>
+            </form>
+        </div>  
+    </script>
+
     <!-- header -->
     <header class="topbar">
     	<div class="container">
@@ -40,8 +81,12 @@
     		</div>
     		<div class="topbar_info">
     			<ul>
-    				<li><a href="">登陆</a></li>
-    				<li><a href="">注册</a></li>
+    				<li><a href="javascript:void(0);" onclick="(function() {
+                        document.getElementById('success_dilog').innerHTML =  document.getElementById('login_in').innerHTML;
+                    })()">登陆</a></li>
+    				<li><a href="javascript:void(0);" onclick="(function() {
+                        document.getElementById('success_dilog').innerHTML =  document.getElementById('login_up').innerHTML;
+                    })()">注册</a></li>
     				<li><a href="">消息通知</a></li>
     			</ul>
     		</div>
