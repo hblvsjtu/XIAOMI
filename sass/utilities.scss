@@ -180,10 +180,11 @@
 			position: absolute;
 		    top: 0;
 		    right: $height - 1px;
-		    font-size: 14px;
 		    width: $width;
 		    height: $height - 1*4px;
 		    line-height: $height - 1*4px;
+		    text-indent: 15px;
+		    font-size: 14px;
 		    border: 1px solid #e0e0e0;
 		    &:focus {
 		    	border: solid 1px rgb(253, 98, 6);
@@ -257,6 +258,7 @@
 			top: $height - 1px;
 			right: $height - 1px;
 			width: $width + 2px;
+			box-sizing: content-box;
 			li {
 				display: block;
 				a {

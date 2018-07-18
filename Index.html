@@ -21,7 +21,7 @@
     <div id="success_dilog"></div>
     <script type="text/x-template" id="login_in">
         <div style="position: fixed; height: 100%; width: 100%; background: rgba(0,0,0,0.5); z-index:2;" class="jumbotron">
-            <form action="#" style="display: inline-block;position: absolute;top: 0;left: 0;bottom: 0; right: 0; width: 400px; height: 260px; margin: auto; padding: 20px 50px; background: yellow; border-radius: 5px; font-size: 30px;">
+            <form action="#" style="display: inline-block;position: absolute;top: 0;left: 0;bottom: 0; right: 0; width: 400px; height: 260px; margin: auto; padding: 20px 50px; background: yellow; border-radius: 5px; font-size: 2rem;">
             Username:</br>
             <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></br>
             Password:</br>
@@ -38,7 +38,7 @@
     </script>
     <script type="text/x-template" id="login_up">
         <div style="position: fixed; height: 100%; width: 100%; background: rgba(0,0,0,0.5); z-index:2;" class="jumbotron">
-            <form action="#" style="display: inline-block;position: absolute;top: 0;left: 0;bottom: 0; right: 0; width: 400px; height: 430px; margin: auto; padding: 20px 50px; background: yellow; border-radius: 5px; font-size: 30px;">
+            <form action="#" style="display: inline-block;position: absolute;top: 0;left: 0;bottom: 0; right: 0; width: 400px; height: 430px; margin: auto; padding: 20px 50px; background: yellow; border-radius: 5px; font-size: 2rem;">
             Username:</br>
             <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></br>
             Password:</br>
@@ -101,16 +101,16 @@
     		</div>
     		<div class="site_right">
     			<form>
-    				<input type="text"><button type="submit"><i></i></button>
+    				<input type="text" data-bind-search="site_right_search"><button type="submit"><i></i></button>
     				<div>
     					<a href="https://www.mi.com/mi8/">小米8</a>
     					<a href="https://item.mi.com/product/10000085.html" >小米MIX 2S</a>
     				</div>
     				<ul>
-    					<li><a href="">小米6X<span>约有6件</span></a></li>
-    					<li><a href="">小米MIX 2S<span>约有3件</span></a></li>
-    					<li><a href="">黑鲨游戏手机<span>约有2件</span></a></li>
-    					<li><a href="">红米Note5<span>约有1件</span></a></li>
+    					<li><a href=""><em data-bind-search="site_right_search" id="site_right_search">小米6X</em><span>约有6件</span></a></li>
+    					<li><a href=""><em>小米MIX 2S</em><span>约有3件</span></a></li>
+    					<li><a href=""><em>黑鲨游戏手机</em><span>约有2件</span></a></li>
+    					<li><a href=""><em>红米Note5</em><span>约有1件</span></a></li>
     				</ul>
     			</form>
     		</div>
